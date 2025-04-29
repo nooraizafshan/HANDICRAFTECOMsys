@@ -1,34 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
+import slider1  from '@/assets/nat.png'
+import slider2  from '@/assets/s3.png'
+import slider3  from '@/assets/Arts34.png'
+
 import Image from "next/image";
 
 const HeaderSlider = () => {
   const sliderData = [
     {
       id: 1,
-      title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
-      offer: "Limited Time Offer 30% Off",
-      buttonText1: "Buy now",
-      buttonText2: "Find more",
-      imgSrc: assets.header_headphone_image,
+      title: "Crafted with Love ",
+      offer: "Limited Time Offer: 30% Off on Selected Handicrafts",
+      buttonText1: "Shop Now",
+      buttonText2: "Discover More",
+      imgSrc: slider1,
     },
     {
       id: 2,
-      title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
-      offer: "Hurry up only few lefts!",
-      buttonText1: "Shop Now",
-      buttonText2: "Explore Deals",
-      imgSrc: assets.header_playstation_image,
+      title: "Bring Tradition Home !",
+      offer: "Hurry! Unique Pieces Selling Fast!",
+      buttonText1: "Buy Now",
+      buttonText2: "View Collection",
+      imgSrc: slider2,
     },
     {
       id: 3,
-      title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
-      offer: "Exclusive Deal 40% Off",
+      title: "Discover Hand-Embroidered Artworks!",
+      offer: "Exclusive Launch: Up to 40% Off",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
-      imgSrc: assets.header_macbook_image,
+      imgSrc: slider3,
     },
   ];
+ 
+  
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
