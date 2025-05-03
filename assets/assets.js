@@ -1,4 +1,4 @@
-import logo from "./Hlogo.png";
+import logo from "./HLogo.png";
 import Cf from "./Cf.png";
 import cfc from "./cfc.png";
 import cfc2 from "./cfc2.png";
