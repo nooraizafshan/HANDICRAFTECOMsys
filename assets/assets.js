@@ -1,4 +1,33 @@
-import logo from "./logo.svg";
+
+import logo from "./Hlogo.png";
+import Cf from "./Cf.png";
+import cfc from "./cfc.png";
+import cfc2 from "./cfc2.png";
+import wfc from "./wfc.png";
+import wfc1 from "./wfc1.png";
+import wfc2 from './wfc2.png';
+import Yf from "./Yf.png";
+import yfc1 from './yfc.png';
+import yfc2 from './Yf1.png';
+import Yfc3 from './yfc1.png';
+import pf from './pf.jpeg';
+import pf1 from './natre.jpeg'
+import pf2 from './nat.png';
+import puf from './puf.png';
+import puf1 from './puf1.png';
+import pink from './Pink.png';
+import purple from './purple.jpeg';
+import colorful from './colorful.png';
+import gf from './gf.png';
+import gf1 from './gf1.png';
+import gf2 from './gf2.png';
+import gf3 from './gf3.png';
+import gf4 from './gf4.png';
+import gf5 from './gf5.png';
+import gf6 from './gf6.png';
+import gf7 from './gf7.png';
+import gf8 from './gf8.png';
+import gf9 from './gf9.png';
 import search_icon from "./search_icon.svg";
 import user_icon from "./user_icon.svg";
 import cart_icon from "./cart_icon.svg";
@@ -36,7 +65,6 @@ import projector_image from "./projector_image.png";
 import playstation_image from "./playstation_image.png";
 import girl_with_headphone_image from "./girl_with_headphone_image.png";
 import girl_with_earphone_image from "./girl_with_earphone_image.png";
-import md_controller_image from "./md_controller_image.png";
 import sm_controller_image from "./sm_controller_image.png";
 import jbl_soundbox_image from "./jbl_soundbox_image.png";
 import boy_with_laptop_image from "./boy_with_laptop_image.png";
@@ -49,6 +77,35 @@ import product_details_page_apple_earphone_image5 from "./product_details_page_a
 
 export const assets = {
   logo,
+  Cf,
+  cfc,
+  cfc2,
+  wfc,
+  wfc1,
+  wfc2,
+  yfc1,
+  Yf,
+  yfc2,
+  Yfc3,
+  Yf,
+  pf,
+  pf1,
+  pf2,
+  puf,
+  puf1,
+  pink,
+  purple,
+  colorful,
+  gf,
+  gf1,
+  gf2,
+  gf3,
+  gf4,
+  gf5,
+  gf6,
+  gf7,
+  gf8,
+  gf9,
   search_icon,
   user_icon,
   cart_icon,
@@ -86,7 +143,6 @@ export const assets = {
   playstation_image,
   girl_with_headphone_image,
   girl_with_earphone_image,
-  md_controller_image,
   sm_controller_image,
   jbl_soundbox_image,
   boy_with_laptop_image,
@@ -130,6 +186,7 @@ export const HomeIcon = () => (
 );
 
 export const productsDummyData = [
+  
   {
     "_id": "67a1f4e43f34a77b6dde9144",
     "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
@@ -138,24 +195,25 @@ export const productsDummyData = [
     "price": 59.99,
     "offerPrice": 49.99,
     "image": [
-      header_playstation_image, // flower.jpg
-      header_headphone_image,   // Arts.jpeg
-      girl_with_headphone_image // Using as additional flower image
+      Cf,  // Using the new Cf.png as the primary image
+      cfc, 
+      cfc2
     ],
     "category": "Classic Bouquets",
     "date": 1738667236865,
     "__v": 0
   },
   {
-    "_id": "67a1f52e3f34a77b6dde914a",
+    "_id": "67a1f52e3f34a77b6dde914b",
     "userId": "user_2sZFHS1UIIysJyDVzCpQhUhTIhw",
     "name": "Spring Garden Mix",
     "description": "A vibrant mix of seasonal flowers including tulips, daisies, and lilies arranged in a rustic style. This cheerful bouquet brings the colors of spring into any room and makes a wonderful gift for birthdays or to brighten someone's day.",
     "price": 45.99,
     "offerPrice": 39.99,
     "image": [
-      apple_earphone_image,     // Using as flower image
-      bose_headphone_image      // Using as flower image
+      wfc1,
+      wfc,
+      wfc2
     ],
     "category": "Seasonal Arrangements",
     "date": 1738667310300,
@@ -169,8 +227,12 @@ export const productsDummyData = [
     "price": 89.99,
     "offerPrice": 79.99,
     "image": [
-      samsung_s23phone_image,   // Using as flower image
-      venu_watch_image          // Using as flower image
+      yfc2,
+      Yfc3,
+      Yf,
+      yfc1,
+      Yf,
+           
     ],
     "category": "Premium Plants",
     "date": 1738667366224,
@@ -184,8 +246,9 @@ export const productsDummyData = [
     "price": 39.99,
     "offerPrice": 34.99,
     "image": [
-      cannon_camera_image,      // Using as flower image
-      sony_airbuds_image        // Using as flower image
+      pf1,
+      pf,
+      pf2,     
     ],
     "category": "Country Style",
     "date": 1738667417511,
@@ -199,8 +262,8 @@ export const productsDummyData = [
     "price": 65.99,
     "offerPrice": 59.99,
     "image": [
-      asus_laptop_image,        // Using as flower image
-      projector_image           // Using as flower image
+             puf1,
+             puf,      
     ],
     "category": "Formal Arrangements",
     "date": 1738667503075,
@@ -214,8 +277,7 @@ export const productsDummyData = [
     "price": 49.99,
     "offerPrice": 44.99,
     "image": [
-      playstation_image,        // Using as flower image
-      girl_with_earphone_image  // Using as flower image
+      pink
     ],
     "category": "Premium Plants",
     "date": 1738667788883,
@@ -229,8 +291,7 @@ export const productsDummyData = [
     "price": 55.99,
     "offerPrice": 49.99,
     "image": [
-      md_controller_image,      // Using as flower image
-      sm_controller_image      // Using as flower image
+      purple
     ],
     "category": "Seasonal Arrangements",
     "date": 1738667977644,
@@ -244,8 +305,7 @@ export const productsDummyData = [
     "price": 69.99,
     "offerPrice": 62.99,
     "image": [
-      jbl_soundbox_image,       // Using as flower image
-      boy_with_laptop_image     // Using as flower image
+      colorful     // Using as flower image
     ],
     "category": "Classic Bouquets",
     "date": 1738668086331,
@@ -259,8 +319,11 @@ export const productsDummyData = [
     "price": 79.99,
     "offerPrice": 72.99,
     "image": [
-      product_details_page_apple_earphone_image1,
-      product_details_page_apple_earphone_image2
+      gf,
+      gf1,
+      gf2,
+      gf3,
+      gf4
     ],
     "category": "Exotic Blooms",
     "date": 1738668126660,
@@ -274,8 +337,11 @@ export const productsDummyData = [
     "price": 65.99,
     "offerPrice": 59.99,
     "image": [
-      product_details_page_apple_earphone_image3,
-      product_details_page_apple_earphone_image4
+      gf8,
+      gf9,
+      gf7,
+      gf6,
+      gf5
     ],
     "category": "Premium Plants",
     "date": 1738668619198,
