@@ -1,115 +1,117 @@
-// import { Inngest } from "inngest";
-// import connectDb from "./db";
-// import ingest from "ingest";
-// import User from "@/models/User";
-
-// // Create a client to send and receive events
-// export const inngest = new Inngest({ id: "Handicraft-next" });
-
-// //Ingest function to save user data to a database 
-
-// export const syncUserCreation =inngest.createFunction(
-//     {
-//     id:'sync-user-from-clerk'
-//     },
-//     {
-//         event:'clerk/user.created'
-//     },
-//     async({event})=>{
-//        const {id,first_name,last_name,email_addresses,image_url } = event.data
-//        const userData ={
-//           _id:id,
-//           email:email_addresses[0].email_address,
-//           name:first_name + '' + last_name,
-//           image_Url:image_url
-//        }
-//        await connectDb()
-//        await User.create(userData)
-//      }
-// )
-
-// //ingest function to update user data in database
-
-// export const syncUserUpdation =ingest.createFunction(
-//     {
-//         id:'update-user-from-clerk'
-//     },
-//     {
-//         event:'clerk/user.updated'
-//     },
-//     async({event})=>{
-//         const {id,first_name,last_name,email_addresses,image_url } = event.data
-//         const userData ={
-//            _id:id,
-//            email:email_addresses[0].email_address,
-//            name:first_name + '' + last_name,
-//            image_Url:image_url
-//         }
-//       await connectDb()
-//       await User.findByIdAndUpdate(id,userData)
-//     }
-// )
-
-// //Ingest function to delete user from database 
-// export const syncUserDeletion =ingest.createFunction(
-//     {
-//         id:'delete-user-with-clerk'
-//     },
-//     {
-//         event:'clerk/user.deleted'
-//     },
-//     async ({event}) =>{
-//       const {id} =event.data
-//       await connectDb()
-//       await User.findByIdAndDelete(id)
-//     }
-// )
 import { Inngest } from "inngest";
 import connectDb from "./db";
-import User from "@/models/User";
+import User from "@/models/User"; // <-- make sure this import exists
 
-export const inngest = new Inngest({ id: "Handicraft-next" });
+// 🧠 DEBUG: Log environment setup
+console.log("🟡 Inngest Config Loaded...");
+console.log("➡️ INNGEST_ENV:", process.env.INNGEST_ENV);
+console.log("➡️ INNGEST_SIGNING_KEY:", process.env.INNGEST_SIGNING_KEY ? "✅ Loaded" : "❌ Missing");
+console.log("➡️ INNGEST_EVENT_KEY:", process.env.INNGEST_EVENT_KEY ? "✅ Loaded" : "❌ Missing");
 
-// Create function: Clerk user.created
+// Initialize Inngest Client
+export const inngest = new Inngest({
+  id: "handicraft-next",
+  name: "Handicraft E-commerce",
+  env: process.env.INNGEST_ENV || "dev",
+  signingKey: process.env.INNGEST_SIGNING_KEY,
+  eventKey: process.env.INNGEST_EVENT_KEY,
+});
+
+console.log("✅ Inngest client initialized successfully.");
+
+// =======================
+// 1️⃣ SYNC USER CREATION
+// =======================
+// export const syncUserCreation = inngest.createFunction(
+//   { id: "sync-user-from-clerk" },
+//   { event: "clerk/user.created" },
+//   async ({ event }) => {
+//     console.log("🟢 Event Triggered: clerk/user.created");
+//     console.log("📦 Event Data:", event.data);
+
+//     const { id, first_name, last_name, email_addresses, image_url } = event.data;
+//     const userData = {
+//       _id: id,
+//       email: email_addresses?.[0]?.email_address,
+//       name: `${first_name || ""} ${last_name || ""}`.trim(),
+//       image_Url: image_url,
+//     };
+
+//     console.log("🧩 User Data to Create:", userData);
+
+//     await connectDb();
+//     console.log("✅ MongoDB Connected for User Creation");
+
+//     await User.create(userData);
+//     console.log("🎉 User Created Successfully:", userData._id);
+//   }
+// );
+
 export const syncUserCreation = inngest.createFunction(
   { id: "sync-user-from-clerk" },
   { event: "clerk/user.created" },
   async ({ event }) => {
+    console.log("🟢 Inngest Function Triggered: clerk/user.created");
+    console.log("📦 Event Data:", event.data);
+
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
     const userData = {
       _id: id,
-      email: email_addresses[0].email_address,
-      name: `${first_name} ${last_name}`,
+      email: email_addresses?.[0]?.email_address,
+      name: `${first_name || ""} ${last_name || ""}`.trim(),
       image_Url: image_url,
     };
+
     await connectDb();
+    console.log("🔗 MongoDB connected successfully");
     await User.create(userData);
+    console.log("✅ User created successfully in DB:", userData);
   }
 );
 
-// Update function
+// =======================
+// 2️⃣ SYNC USER UPDATION
+// =======================
 export const syncUserUpdation = inngest.createFunction(
   { id: "update-user-from-clerk" },
   { event: "clerk/user.updated" },
   async ({ event }) => {
+    console.log("🟠 Event Triggered: clerk/user.updated");
+    console.log("📦 Event Data:", event.data);
+
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
     const userData = {
-      email: email_addresses[0].email_address,
-      name: `${first_name} ${last_name}`,
+      email: email_addresses?.[0]?.email_address,
+      name: `${first_name || ""} ${last_name || ""}`.trim(),
       image_Url: image_url,
     };
+
+    console.log("🧩 Updated User Data:", userData);
+
     await connectDb();
-    await User.findByIdAndUpdate(id, userData);
+    console.log("✅ MongoDB Connected for User Update");
+
+    const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
+    console.log("🔁 User Updated Successfully:", updatedUser?._id || "User not found");
   }
 );
 
-// Delete function
+// =======================
+// 3️⃣ SYNC USER DELETION
+// =======================
 export const syncUserDeletion = inngest.createFunction(
   { id: "delete-user-with-clerk" },
   { event: "clerk/user.deleted" },
   async ({ event }) => {
+    console.log("🔴 Event Triggered: clerk/user.deleted");
+    console.log("📦 Event Data:", event.data);
+
     const { id } = event.data;
+
     await connectDb();
+    console.log("✅ MongoDB Connected for User Deletion");
+
     await User.findByIdAndDelete(id);
+    console.log("🗑️ User Deleted Successfully:", id);
   }
 );
